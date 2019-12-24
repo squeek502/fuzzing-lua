@@ -25,7 +25,7 @@ First, `cd build.fuzz`, then, from within that directory:
 
 The lexer fuzzer has an accompanying tool to output the tokens generated when lexing each file in the corpus. This set of result files can then be used to compare alternate Lua lexer implementations to ensure that they generate the exact same set of tokens.
 
-The format of the output file is a space-separate list of tokens, printed via luaX_token2str. For example, if the input file was:
+The format of the output file is a space-separate list of tokens, printed via `luaX_token2str`. For example, if the input file was:
 
 ```lua
 local hello = 'world'
@@ -37,10 +37,10 @@ then the output file would be:
 local <name> = <string> <eof>
 ```
 
-if there is an error while lexing, then the error appears on the second line of the file. If the last `'` in the `'world'` string in the previous example were omitted, then the output would look like:
+If there is an error while lexing, then the error appears on the second line of the file. For example, if the last `'` in the `'world'` string in the previous example were omitted, then the output would look like:
 
 ```
-local <name> = <string> 
+local <name> =
 [string "fuzz"]:3: unfinished string near '<eof>'
 ```
 
