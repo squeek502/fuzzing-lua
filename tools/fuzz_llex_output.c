@@ -60,25 +60,25 @@ int main(int argc, const char* argv[])
 	}
 	DIR *dir;
 	struct dirent *ent;
-	if ((dir = opendir (input_dir)) != NULL) {
-		while ((ent = readdir (dir)) != NULL) {
-			if (strlen(ent->d_name) <= 2) continue;
-
-			sprintf(pathbuf, "%s/%s", input_dir, ent->d_name);
-			size_t size = read_file(pathbuf, buf, sizeof(buf));
-
-			sprintf(pathbuf, "%s/%s", output_dir, ent->d_name);
-			LLEX_HELPER_OUTPUT_FILE = fopen(pathbuf, "w");
-
-    			llex_fuzz(buf, size);
-
-			fclose(LLEX_HELPER_OUTPUT_FILE);
-  		}
-  		closedir (dir);
-	} else {
-		perror ("");
-		return EXIT_FAILURE;
+	if ((dir = opendir (input_dir)) == NULL) {
+		sprintf(pathbuf, "Failed to open input dir \"%s\"", input_dir);
+		perror(pathbuf);
+		return 1;
 	}
+	while ((ent = readdir (dir)) != NULL) {
+		if (ent->d_type == DT_DIR) continue;
+
+		sprintf(pathbuf, "%s/%s", input_dir, ent->d_name);
+		size_t size = read_file(pathbuf, buf, sizeof(buf));
+
+		sprintf(pathbuf, "%s/%s", output_dir, ent->d_name);
+		LLEX_HELPER_OUTPUT_FILE = fopen(pathbuf, "w");
+
+		llex_fuzz(buf, size);
+
+		fclose(LLEX_HELPER_OUTPUT_FILE);
+  	}
+  	closedir (dir);
 	printf("Results written to: %s\n", output_dir);
 	return 0;
 }

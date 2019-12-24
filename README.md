@@ -1,7 +1,7 @@
 Fuzzing Lua
 ===========
 
-Fuzz testing for various parts of the Lua interpreter, mostly for use as a test-case generator for alternate Lua implementations (e.g. [Zua](https://github.com/squeek502/zua)).
+Fuzz testing for various parts of the Lua interpreter, mostly for use as a test-case generator for alternate Lua implementations (e.g. [Zua](https://github.com/squeek502/zua)). Uses [libFuzzer](https://llvm.org/docs/LibFuzzer.html) via the Clang compiler.
 
 Currently supports:
 - Lua 5.1.5
@@ -44,9 +44,12 @@ local <name> =
 [string "fuzz"]:3: unfinished string near '<eof>'
 ```
 
-To generate the output files, first `cd build.tools`, then from within that directory run:
+#### Usage
+
+First, run the fuzzer (see Fuzzing above) to create a comprehensive corpus. Then, to generate the output files for each file in the corpus:
 
 ```
+cd build.tools
 make fuzz_llex_output_run
 ```
 
