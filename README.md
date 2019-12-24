@@ -23,7 +23,7 @@ First, `cd build.fuzz`, then, from within that directory:
 
 ### fuzz_llex_output
 
-The lexer fuzzer has an accompanying tool to output the tokens generated when lexing each file in the corpus. This set of result files can then be used to compare alternate Lua lexer implementations to ensure that they generate the exact same set of tokens.
+The lexer fuzzer has an accompanying tool to output the tokens generated when lexing each file in the corpus. This set of result files can then be used to test alternate Lua lexer implementations to ensure that they generate the exact same set of tokens.
 
 The format of the output file is a space-separate list of tokens, printed via `luaX_token2str`. For example, if the input file was:
 
