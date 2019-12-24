@@ -50,7 +50,7 @@ To generate the output files, first `cd build.tools`, then from within that dire
 make fuzz_llex_output_run
 ```
 
-The files will be in `build.tools/output/fuzz_llex/` and the file names will correspond with the file names of the corpus input files.
+The files will be in `build.tools/tools/output/fuzz_llex/` and the file names will correspond with the file names of the corpus input files.
 
 ## Coverage
 
