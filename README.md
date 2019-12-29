@@ -4,7 +4,7 @@ Fuzzing Lua
 Fuzz testing for various parts of the Lua interpreter, mostly for use as a test-case generator for alternate Lua implementations (e.g. [Zua](https://github.com/squeek502/zua)). Uses [libFuzzer](https://llvm.org/docs/LibFuzzer.html) via the Clang compiler. A pre-generated corpus and corresponding outputs can be found on the [releases page](https://github.com/squeek502/fuzzing-lua/releases) for quick use as a data set for testing other Lua implementations.
 
 For a writeup of how this was used to test [Zua](https://github.com/squeek502/zua)'s lexer implementation, see:
-- [Fuzzing As A Test Case Generator](https://www.ryanliptak.com/blog/fuzzing-test-case-generator/)
+- [Fuzzing As A Test Case Generator](https://www.ryanliptak.com/blog/fuzzing-as-test-case-generator/)
 
 Currently supports:
 - Lua 5.1.5
