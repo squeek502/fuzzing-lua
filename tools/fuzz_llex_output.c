@@ -13,8 +13,13 @@ size_t read_file(const char* path, uint8_t* buf, size_t bufsize)
 	FILE* f = fopen(path, "rb");
 	fseek(f, 0, SEEK_END);
 	long size = ftell(f);
+	if (size < 0) {
+		fclose(f);
+		perror("ftell failed when reading file");
+		return 0;
+	}
 	rewind(f);
-	if (size > bufsize) {
+	if ((size_t)size > bufsize) {
 		fclose(f);
 		fprintf(stderr, "file '%s' too big (%ld)", path, size);
 		return 0;

@@ -58,14 +58,9 @@ static void open_func(LexState *ls, FuncState *fs) {
 	incr_top(L);
 }
 
-struct SParser {  /* data to `f_parser' */
-	ZIO *z;
-	Mbuffer buff;  /* buffer to be used by the scanner */
-	const char *name;
-};
-
 static void protected_lex(lua_State *L, void *ud)
 {
+	(void)L; // fix warning
 	LexState* lexstate = (LexState*)ud;
 	while (1) {
 		luaX_next(lexstate);

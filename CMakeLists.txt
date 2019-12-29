@@ -8,6 +8,8 @@ add_library( luafuzzhelper src/llex_helper.c )
 target_link_libraries( luafuzzhelper PRIVATE liblua )
 target_include_directories( luafuzzhelper PUBLIC src )
 
+set(CMAKE_C_FLAGS  "${CMAKE_C_FLAGS} -Wall -Wextra -Wpedantic")
+
 option(ENABLE_FUZZING "Create executables and targets for fuzzing." On)
 option(COVERAGE "Enable code coverage tracking" Off)
 if (COVERAGE)
