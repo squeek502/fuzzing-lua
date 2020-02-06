@@ -76,6 +76,11 @@ static void protected_lex(lua_State *L, void *ud)
 
 void llex_fuzz(const uint8_t *data, size_t size)
 {
+	llex_fuzz_custom(data, size, protected_lex);
+}
+
+void llex_fuzz_custom(const uint8_t *data, size_t size, Pfunc func)
+{
 	lua_State *L = luaL_newstate();
 
 	LoadS ls;
@@ -99,7 +104,7 @@ void llex_fuzz(const uint8_t *data, size_t size)
 	open_func(&lexstate, &funcstate);
 
 	// protected call to avoid panic
-	int status = luaD_pcall(L, protected_lex, &lexstate, savestack(L, L->top), L->errfunc);
+	int status = luaD_pcall(L, func, &lexstate, savestack(L, L->top), L->errfunc);
 	switch (status)
 	{
 	case LUA_ERRSYNTAX:
