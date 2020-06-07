@@ -105,3 +105,10 @@ Your minimized input set will then exist in `fuzzing-lua/build.fuzz/corpus/fuzz_
 ## Coverage
 
 This is currently untested. **TODO**: Adapt [this guide](https://github.com/squeek502/d2itemreader/tree/master/tests/fuzz#checking-coverage-of-a-fuzzer).
+
+## Packaging/releasing data sets
+
+```
+cd build.tools
+make package_data
+```
